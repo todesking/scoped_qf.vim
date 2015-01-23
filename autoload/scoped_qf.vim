@@ -3,10 +3,7 @@ let s:data_key = s:prefix . 'data'
 
 function! scoped_qf#update() abort " {{{
 	let scope = metascope#scope(g:scoped_qf_scope_type)
-	if !scope.exists(s:data_key)
-		return
-	endif
-	call s:set(scope.get(s:data_key))
+	call s:set(scope.get(s:data_key, []))
 endfunction " }}}
 
 function! scoped_qf#set(data) abort " {{{

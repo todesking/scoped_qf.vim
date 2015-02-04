@@ -14,6 +14,11 @@ function! scoped_qf#set(data) abort " {{{
 endfunction " }}}
 
 function! s:set(data) abort " {{{
+	for d in a:data
+		if has_key(d, 'bufnr') && empty(bufname(d.bufnr))
+			unlet d.bufnr
+		endif
+	endfor
 	call setqflist(a:data)
 	call s:set_syntastic(a:data)
 endfunction " }}}

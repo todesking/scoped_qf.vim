@@ -19,6 +19,7 @@ function! s:set(data) abort " {{{
 			unlet d.bufnr
 		endif
 	endfor
+	call filter(a:data, 'get(v:val, ''valid'', 1)')
 	call setqflist(a:data)
 	call s:set_syntastic(a:data)
 endfunction " }}}
